@@ -1,0 +1,18 @@
+.nearby {
+	max-width: 40em;
+	margin: 2em auto 0 auto;
+	padding: 0 1em;
+
+	&__title {
+		composes: h2 from 'Stylesheets/typography';
+	}
+
+	&__list {
+		margin-top: 1em;
+	}
+
+	&__action {
+		margin-top: 1em;
+		text-align: right;
+	}
+}

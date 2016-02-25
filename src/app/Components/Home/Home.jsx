@@ -1,6 +1,9 @@
 import styles from './home.css';
+import { FlatButton } from 'material-ui';
+import { push } from 'react-router-redux';
 import React, { Component, PropTypes } from 'react';
 import { fetchNearbyObjects } from 'Sources/ObjectSource';
+import SearchFormContainer from 'Containers/SearchFormContainer';
 import ObjectCompactList from 'Components/ObjectCompactList/ObjectCompactList';
 
 class Home extends Component {
@@ -11,6 +14,7 @@ class Home extends Component {
 	 * @type {Object}
 	 */
 	static propTypes = {
+		dispatch: PropTypes.func,
 		nearbyResults: PropTypes.array,
 	}
 
@@ -24,6 +28,8 @@ class Home extends Component {
 		fetchNearbyObjects();
 	}
 
+	onShowAllClick = () => this.props.dispatch(push('/nearby'));
+
 	/**
 	 * Render the component.
 	 *
@@ -32,9 +38,24 @@ class Home extends Component {
 	render() {
 		return (
 			<div>
-				<h2>Woningen bij jou in de buurt</h2>
-				<div className={styles.}
-				<ObjectCompactList results={this.props.nearbyResults} />
+				<div>
+					<SearchFormContainer />
+				</div>
+
+				<div className={styles.nearby}>
+					<h2 className={styles.nearby__title}>
+						Woningen bij jou in de buurt
+					</h2>
+					<div className={styles.nearby__list}>
+						<ObjectCompactList results={this.props.nearbyResults} />
+					</div>
+					<div className={styles.nearby__action}>
+						<FlatButton
+							label="Bekijk allemaal"
+							onClick={this.onShowAllClick}
+						/>
+					</div>
+				</div>
 			</div>
 		);
 	}

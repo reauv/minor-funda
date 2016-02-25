@@ -1,0 +1,5 @@
+.wrapper {
+	composes: .wrapper from 'Stylesheets/shared';
+	display: flex;
+	justify-content: space-around;
+}

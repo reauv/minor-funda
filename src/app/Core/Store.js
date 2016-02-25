@@ -6,6 +6,7 @@ import { syncHistory } from 'react-router-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 
 import * as objectActions from 'Actions/ObjectActions';
+import * as searchActions from 'Actions/SearchActions';
 import * as positionActions from 'Actions/PositionActions';
 
 // Set up router middleware
@@ -27,5 +28,6 @@ reduxRouterMiddleware.listenForReplays(store);
 // Assign functions to the store
 assignAll(positionActions, store);
 assignAll(objectActions, store);
+assignAll(searchActions, store);
 
 export default store;

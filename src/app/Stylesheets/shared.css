@@ -22,3 +22,10 @@ img {
 body {
 	background: #F0F0F0;
 }
+
+.wrapper {
+	padding-left: 1em;
+	padding-right: 1em;
+	max-width: 60em;
+	margin: 0 auto;
+}

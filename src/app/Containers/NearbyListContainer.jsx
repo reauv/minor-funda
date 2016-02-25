@@ -38,7 +38,7 @@ class LocationContainer extends Component {
 
 function select(state) {
 	return {
-		results: state.object.results,
+		results: state.object.nearbyResults,
 		city: state.position.city,
 		postal: state.position.postal,
 	};

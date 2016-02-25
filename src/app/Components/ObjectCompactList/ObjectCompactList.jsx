@@ -1,3 +1,4 @@
+import styles from './object_compact_list';
 import React, { Component, PropTypes } from 'react';
 import ObjectCompactItem from 'Components/ObjectCompactItem/ObjectCompactItem';
 
@@ -19,7 +20,7 @@ class ObjectList extends Component {
 	 */
 	render() {
 		return (
-			<div>
+			<div className={styles.wrapper}>
 				{this.props.results.map((object, i) =>
 					<ObjectCompactItem object={object} key={i} />
 				)}

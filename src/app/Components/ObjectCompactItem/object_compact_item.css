@@ -1,0 +1,35 @@
+.container {
+	display: flex;
+	flex-wrap: wrap;
+	flex: 0 0 calc(33% - 1em);
+
+	& > div {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+.wrapper {
+	padding: 1em;
+}
+
+.main {
+	padding: 1em;
+}
+
+.photo {
+	height: 150px;
+	width: auto;
+	object-fit: cover;
+}
+
+.title {
+	font-size: 0.9em;
+	font-weight: bold;
+}
+
+.actions {
+	margin-top: auto;
+}
+
+

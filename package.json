@@ -58,6 +58,7 @@
     "react-tap-event-plugin": "^0.2.2",
     "redux": "^3.2.1",
     "redux-act": "0.4.0",
+    "redux-form": "^4.2.0",
     "redux-thunk": "^1.0.3"
   }
 }
