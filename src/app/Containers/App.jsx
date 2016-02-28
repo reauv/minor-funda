@@ -46,7 +46,7 @@ class App extends Component {
 	 */
 	render() {
 		return (
-			<div className="wrapper">
+			<div>
 				<Header />
 				{this.props.children}
 			</div>

@@ -5,17 +5,6 @@ import SearchForm from 'Components/SearchForm/SearchForm';
 class SearchFormContainer extends Component {
 
 	/**
-	 * Construct the component.
-	 *
-	 * @param  {Object} props   - The properties of the component.
-	 * @param  {Object} context - The context of the component.
-	 * @constructor
-	 */
-	constructor(props, context) {
-		super(props, context);
-	}
-
-	/**
 	 * Render the component.
 	 *
 	 * @return {ReactElement}

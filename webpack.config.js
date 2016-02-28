@@ -18,6 +18,7 @@ module.exports = {
 
 	output: {
 		path: `${PATH}/hot`,
+		publicPath: '/',
 		filename: 'bundle.js'
 	},
 

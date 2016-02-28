@@ -1,5 +1,4 @@
 import styles from './object_compact_item';
-import { push } from 'react-router-redux';
 import React, { Component, PropTypes } from 'react';
 
 import { Card, CardMedia, CardTitle, CardActions, FlatButton } from 'material-ui';
@@ -13,7 +12,10 @@ class ObjectCompactItem extends Component {
 	 */
 	static propTypes = {
 		object: PropTypes.object,
+		onItemClick: PropTypes.func.isRequired,
 	}
+
+	onShowClick = () => this.props.onItemClick(this.props.object.Id);
 
 	/**
 	 * Render the component.
@@ -30,7 +32,7 @@ class ObjectCompactItem extends Component {
 					<h1 className={styles.title}>{this.props.object.Adres}</h1>
 				</CardTitle>
 				<CardActions className={styles.actions}>
-					<FlatButton label="Bekijk"/>
+					<FlatButton label="Bekijk" onClick={this.onShowClick} />
 				</CardActions>
 			</Card>
 		);

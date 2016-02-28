@@ -1,7 +1,9 @@
+.wrapper {
+	composes: wrapper from 'Stylesheets/shared';
+}
+
 .nearby {
-	max-width: 40em;
-	margin: 2em auto 0 auto;
-	padding: 0 1em;
+	margin-top: 2em;
 
 	&__title {
 		composes: h2 from 'Stylesheets/typography';

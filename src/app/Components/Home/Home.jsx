@@ -29,6 +29,7 @@ class Home extends Component {
 	}
 
 	onShowAllClick = () => this.props.dispatch(push('/nearby'));
+	onNearbyItemClick = (id) => this.props.dispatch(push(`/object/${id}`))
 
 	/**
 	 * Render the component.
@@ -37,8 +38,8 @@ class Home extends Component {
 	 */
 	render() {
 		return (
-			<div>
-				<div>
+			<div className={styles.wrapper}>
+				<div className={styles.search}>
 					<SearchFormContainer />
 				</div>
 
@@ -47,7 +48,10 @@ class Home extends Component {
 						Woningen bij jou in de buurt
 					</h2>
 					<div className={styles.nearby__list}>
-						<ObjectCompactList results={this.props.nearbyResults} />
+						<ObjectCompactList
+							results={this.props.nearbyResults}
+							onItemClick={this.onNearbyItemClick}
+						/>
 					</div>
 					<div className={styles.nearby__action}>
 						<FlatButton

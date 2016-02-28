@@ -1,4 +1,5 @@
 import styles from './object_list';
+import { CircularProgress } from 'material-ui';
 import React, { Component, PropTypes } from 'react';
 import ObjectItem from 'Components/ObjectItem/ObjectItem';
 
@@ -10,7 +11,19 @@ class ObjectList extends Component {
 	 * @type {Object}
 	 */
 	static propTypes = {
-		results: PropTypes.array,
+		title: PropTypes.string,
+		onItemClick: PropTypes.func,
+		results: PropTypes.array.isRequired,
+	}
+
+	renderResults() {
+		return this.props.results.map((object, i) =>
+			<ObjectItem
+				key={i}
+				object={object}
+				onItemClick={this.props.onItemClick}
+			/>
+		);
 	}
 
 	/**
@@ -19,11 +32,15 @@ class ObjectList extends Component {
 	 * @return {ReactElement}
 	 */
 	render() {
+		const results = this.renderResults();
+
 		return (
 			<div className={styles.wrapper}>
-				{this.props.results.map((object, i) =>
-					<ObjectItem object={object} key={i} />
-				)}
+				<h2 className={styles.title}>{this.props.title}</h2>
+
+				{results.length > 0
+					? <div className={styles.results}>{results}</div>
+					: <CircularProgress className={styles.loader} /> }
 			</div>
 		);
 	}

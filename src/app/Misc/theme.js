@@ -8,7 +8,7 @@ export default {
 	zIndex: zIndex,
 	fontFamily: 'Open Sans, sans-serif',
 	palette: {
-		primary1Color: Colors.cyan500,
+		primary1Color: '#F8B000',
 		primary2Color: Colors.cyan700,
 		primary3Color: Colors.lightBlack,
 		accent1Color: '#F8B000',

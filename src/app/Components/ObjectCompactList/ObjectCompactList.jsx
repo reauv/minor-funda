@@ -1,4 +1,5 @@
 import styles from './object_compact_list';
+import { CircularProgress } from 'material-ui';
 import React, { Component, PropTypes } from 'react';
 import ObjectCompactItem from 'Components/ObjectCompactItem/ObjectCompactItem';
 
@@ -10,7 +11,18 @@ class ObjectList extends Component {
 	 * @type {Object}
 	 */
 	static propTypes = {
-		results: PropTypes.array,
+		results: PropTypes.array.isRequired,
+		onItemClick: PropTypes.func.isRequired,
+	}
+
+	renderResults() {
+		return this.props.results.map((object, i) =>
+			<ObjectCompactItem
+				key={i}
+				object={object}
+				onItemClick={this.props.onItemClick}
+			/>
+		);
 	}
 
 	/**
@@ -19,11 +31,13 @@ class ObjectList extends Component {
 	 * @return {ReactElement}
 	 */
 	render() {
+		const results = this.renderResults();
+
 		return (
 			<div className={styles.wrapper}>
-				{this.props.results.map((object, i) =>
-					<ObjectCompactItem object={object} key={i} />
-				)}
+				{results.length > 0
+					? results
+					: <CircularProgress className={styles.loader} /> }
 			</div>
 		);
 	}

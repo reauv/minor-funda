@@ -1,8 +1,7 @@
-import styles from './object_item.css';
+import styles from './object_detail_item';
 import React, { Component, PropTypes } from 'react';
-import { RaisedButton } from 'material-ui';
 
-class ObjectItem extends Component {
+class ObjectDetailItem extends Component {
 
 	/**
 	 * Validates the props used by the component.
@@ -10,11 +9,8 @@ class ObjectItem extends Component {
 	 * @type {Object}
 	 */
 	static propTypes = {
-		object: PropTypes.object.isRequired,
-		onItemClick: PropTypes.func.isRequired,
+		object: PropTypes.object,
 	}
-
-	onShowClick = () => this.props.onItemClick(this.props.object.Id);
 
 	getStatus() {
 		if (this.props.object.IsVerkochtOfVerhuurd) {
@@ -37,7 +33,7 @@ class ObjectItem extends Component {
 				<div className={styles.wrapper}>
 					<figure className={styles.figure}>
 						<div className={styles.figure__overlay} />
-						<img src={this.props.object.FotoLargest} />
+						<img src={this.props.object.HoofdFoto} />
 					</figure>
 					<div className={styles.info}>
 						<header className={styles.header}>
@@ -54,9 +50,6 @@ class ObjectItem extends Component {
 						<p className={styles.price}>
 							EUR {this.props.object.Koopprijs}
 						</p>
-						<div className={styles.action}>
-							<RaisedButton label="Bekijk" primary onClick={this.onShowClick} />
-						</div>
 					</div>
 				</div>
 			</div>
@@ -64,4 +57,4 @@ class ObjectItem extends Component {
 	}
 }
 
-export default ObjectItem;
+export default ObjectDetailItem;

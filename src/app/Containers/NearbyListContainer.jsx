@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import React, { Component, PropTypes } from 'react';
 import { fetchNearbyObjects } from 'Sources/ObjectSource';
 import ObjectList from 'Components/ObjectList/ObjectList';
 
-class LocationContainer extends Component {
+class NearbyListContainer extends Component {
 
 	/**
 	 * Validates the props used by the component.
@@ -12,6 +13,7 @@ class LocationContainer extends Component {
 	 */
 	static propTypes = {
 		results: PropTypes.array,
+		onItemClick: PropTypes.func,
 	}
 
 	/**
@@ -31,7 +33,11 @@ class LocationContainer extends Component {
 	 */
 	render() {
 		return (
-			<ObjectList results={this.props.results} />
+			<ObjectList
+				onItemClick={this.props.onItemClick}
+				title="Woningen bij jou in de buurt"
+				results={this.props.results}
+			/>
 		);
 	}
 }
@@ -44,4 +50,10 @@ function select(state) {
 	};
 }
 
-export default connect(select)(LocationContainer);
+function mapDispatch(dispatch) {
+	return {
+		onItemClick: (id) => dispatch(push(`/object/${id}`)),
+	};
+}
+
+export default connect(select, mapDispatch)(NearbyListContainer);
