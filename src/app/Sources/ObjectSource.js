@@ -3,8 +3,8 @@ import { FUNDA_API_KEY } from 'env';
 import { fetchPositionData } from 'Sources/PositionSource';
 import * as objectActions from 'Actions/ObjectActions';
 
-const SEARCH_ENDPOINT = `http://partnerapi.funda.nl/feeds/Aanbod.svc/json/${FUNDA_API_KEY}`;
-const DETAIL_ENDPOINT = `http://partnerapi.funda.nl/feeds/Aanbod.svc/json/detail/${FUNDA_API_KEY}/koop`;
+const SEARCH_ENDPOINT = `http://funda.kyrandia.nl/feeds/Aanbod.svc/json/${FUNDA_API_KEY}`;
+const DETAIL_ENDPOINT = `http://funda.kyrandia.nl/feeds/Aanbod.svc/json/detail/${FUNDA_API_KEY}/koop`;
 
 function fetchObjects(type = 'koop', location = '', radius = 0, filters = []) {
 	const filterList = filters.join('/');
