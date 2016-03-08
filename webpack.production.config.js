@@ -25,7 +25,7 @@ module.exports = {
 		fallback: path.join(__dirname, 'node_modules'),
 		alias: {
 			env: path.join(PATH, 'env'),
-		}
+		},
 	},
 
 	plugins: [
@@ -33,21 +33,27 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: `${PATH}/src/templates/index.html`,
 			inject: true,
-			hash: true
+			hash: true,
 		}),
+	],
+
+	postcss: [
+		require('postcss-modules-values'),
+		require('postcss-nested'),
+		require('autoprefixer'),
 	],
 
 	module: {
 		loaders: [
 			{
 				test: /\.jsx?$/,
-				loaders: ['babel'],
+				loaders: ['babel?presets[]=react,presets[]=es2015,presets[]=stage-0'],
 				exclude: /node_modules/,
 			},
 			{
 				test: /\.css$/,
-				loader: ExtractTextPlugin.extract('style-loader', '!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'),
+				loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'),
 			},
 		],
-	}
+	},
 };
