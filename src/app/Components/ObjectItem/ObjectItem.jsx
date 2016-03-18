@@ -37,16 +37,18 @@ class ObjectItem extends Component {
 				<div className={styles.wrapper}>
 					<figure className={styles.figure}>
 						<div className={styles.figure__overlay} />
-						<img src={this.props.object.FotoLargest} />
+						<img
+							src={this.props.object.HoofdFoto}
+							alt={`Foto van ${this.props.object.Adres}`}
 					</figure>
 					<div className={styles.info}>
 						<header className={styles.header}>
 							<p className={styles.status}>
 								{this.getStatus()}
 							</p>
-							<h1 className={styles.title}>
+							<h3 className={styles.title}>
 								{this.props.object.Adres}
-							</h1>
+							</h3>
 						</header>
 						<p className={styles.location}>
 							{this.props.object.Postcode} - {this.props.object.Woonplaats}

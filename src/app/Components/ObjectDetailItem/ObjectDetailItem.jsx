@@ -43,9 +43,9 @@ class ObjectDetailItem extends Component {
 							<p className={styles.status}>
 								{this.getStatus()}
 							</p>
-							<h1 className={styles.title}>
+							<h3 className={styles.title}>
 								{this.props.object.Adres}
-							</h1>
+							</h3>
 						</header>
 						<p className={styles.location}>
 							{this.props.object.Postcode} - {this.props.object.Woonplaats}
