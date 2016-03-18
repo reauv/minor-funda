@@ -1,7 +1,7 @@
 import reducer from 'Reducers';
 import thunk from 'redux-thunk';
 import { assignAll } from 'redux-act';
-import { browserHistory } from 'react-router';
+import { browserHistory, createMemoryHistory } from 'react-router';
 import { syncHistory } from 'react-router-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 
@@ -10,7 +10,8 @@ import * as searchActions from 'Actions/SearchActions';
 import * as positionActions from 'Actions/PositionActions';
 
 // Set up router middleware
-const reduxRouterMiddleware = syncHistory(browserHistory);
+const history = (typeof window === 'undefined') ? createMemoryHistory() : browserHistory;
+const reduxRouterMiddleware = syncHistory(history);
 
 // Set up store
 const store = createStore(
@@ -18,7 +19,7 @@ const store = createStore(
 	{},
 	compose(
 		applyMiddleware(reduxRouterMiddleware, thunk),
-		window.devToolsExtension ? window.devToolsExtension() : f => f
+		// window.devToolsExtension ? window.devToolsExtension() : f => f
 	)
 );
 

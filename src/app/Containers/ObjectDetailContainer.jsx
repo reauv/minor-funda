@@ -13,6 +13,7 @@ class ObjectDetailContainer extends Component {
 	static propTypes = {
 		object: PropTypes.object.isRequired,
 		params: PropTypes.object.isRequired,
+		dispatch: PropTypes.func.isRequired,
 	}
 
 	/**
@@ -22,7 +23,7 @@ class ObjectDetailContainer extends Component {
 	 * @return {void}
 	 */
 	componentWillMount() {
-		fetchObject(this.props.params.id);
+		this.props.dispatch(fetchObject(this.props.params.id));
 	}
 
 	/**

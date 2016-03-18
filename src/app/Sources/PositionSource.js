@@ -1,11 +1,11 @@
-import _ from 'lodash';
 import Location from 'promised-location';
 import { GOOGLE_GEOCODING_API_KEY } from 'env';
 import * as positionActions from 'Actions/PositionActions';
 
 const GEOCODING_ENDPOINT = `https://maps.googleapis.com/maps/api/geocode/json?${GOOGLE_GEOCODING_API_KEY}`;
 
-const locator = new Location({ enableHighAccuracy: true });
+const navigator = (typeof window !== 'undefined') ? window.navigator : {};
+const locator = new Location({ enableHighAccuracy: true }, Promise, navigator);
 
 function reverseGeocode(latitude, longitude) {
 	return fetch(`${GEOCODING_ENDPOINT}&latlng=${latitude},${longitude}`);
@@ -37,6 +37,9 @@ export function fetchPosition() {
 			const { latitude, longitude } = position.coords;
 			positionActions.fetchedPosition({ latitude, longitude });
 			return { latitude, longitude };
+		})
+		.catch(error => {
+			console.error(error);
 		});
 }
 
@@ -55,5 +58,7 @@ export function fetchPositionData() {
 
 			return { city: getCity(data), postal: getPostal(data) };
 		})
-		.catch(error => _.defer(() => { throw error; }));
+		.catch(error => {
+			console.error(error);
+		});
 }

@@ -1,15 +1,23 @@
 var webpack = require('webpack');
-var config = require('./webpack.config');
-var WebpackDevServer = require('webpack-dev-server');
+var express = require('express');
+var config = {
+	client: require('./webpack.client.config.js'),
+	server: require('./webpack.server.config.js'),
+};
 
-new WebpackDevServer(webpack(config), {
-	hot: true,
-	historyApiFallback: true,
-	contentBase: './src/templates/',
-}).listen(8080, '0.0.0.0', function (err, result) {
-	if (err) {
-		console.log(err);
-	}
+var server = express();
 
-	console.log('Listening at 0.0.0.0:8080');
+webpack(config.server, function (err) {
+	console.log(err);
 });
+
+server.use(express.static('build'));
+
+server.use(function (request, response) {
+	var app = require('./build/bundle.server.js');
+
+	return app.default(request, response);
+});
+
+console.log('Listening at localhost on port 8080');
+server.listen('8080');

@@ -1,4 +1,4 @@
-const PATH = __dirname;
+var PATH = __dirname;
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -7,15 +7,15 @@ module.exports = {
 	// Context of the app
 	context: PATH,
 
-	devtool: 'eval',
+	entry: './src/server',
 
-	entry: './src/client',
+	target: 'node',
 
 	output: {
-		path: path.join(__dirname, 'build'),
-		filename: 'bundle.client.js',
+		path: `${PATH}/build`,
 		publicPath: '/',
-		hash: true,
+		filename: 'bundle.server.js',
+		libraryTarget: 'commonjs2',
 	},
 
 	// Instructions to how resolve the modules
