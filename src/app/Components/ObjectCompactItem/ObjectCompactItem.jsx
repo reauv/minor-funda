@@ -26,7 +26,11 @@ class ObjectCompactItem extends Component {
 		return (
 			<Card className={styles.container}>
 				<CardMedia>
-					<img src={this.props.object.FotoLargest} className={styles.photo} />
+					<img
+						className={styles.photo}
+						src={this.props.object.FotoLargest}
+						alt={`Foto van ${this.props.object.Adres}`}
+					/>
 				</CardMedia>
 				<CardTitle>
 					<h1 className={styles.title}>{this.props.object.Adres}</h1>

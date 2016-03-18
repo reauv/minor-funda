@@ -33,7 +33,10 @@ class ObjectDetailItem extends Component {
 				<div className={styles.wrapper}>
 					<figure className={styles.figure}>
 						<div className={styles.figure__overlay} />
-						<img src={this.props.object.HoofdFoto} />
+						<img
+							src={this.props.object.HoofdFoto}
+							alt={`Foto van ${this.props.object.Adres}`}
+						/>
 					</figure>
 					<div className={styles.info}>
 						<header className={styles.header}>
