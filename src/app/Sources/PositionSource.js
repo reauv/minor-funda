@@ -5,7 +5,6 @@ import * as positionActions from 'Actions/PositionActions';
 const GEOCODING_ENDPOINT = `https://maps.googleapis.com/maps/api/geocode/json?${GOOGLE_GEOCODING_API_KEY}`;
 
 const navigator = (typeof window !== 'undefined') ? window.navigator : {};
-const locator = new Location({ enableHighAccuracy: true }, Promise, navigator);
 
 function reverseGeocode(latitude, longitude) {
 	return fetch(`${GEOCODING_ENDPOINT}&latlng=${latitude},${longitude}`);
@@ -32,7 +31,7 @@ function getPostal(data) {
 export function fetchPosition() {
 	positionActions.fetchingPosition();
 
-	return locator
+	return new Location({ enableHighAccuracy: true }, Promise, navigator)
 		.then(position => {
 			const { latitude, longitude } = position.coords;
 			positionActions.fetchedPosition({ latitude, longitude });

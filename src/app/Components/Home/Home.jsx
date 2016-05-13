@@ -1,4 +1,5 @@
 import styles from './home.css';
+import { Link } from 'react-router';
 import { FlatButton } from 'material-ui';
 import { push } from 'react-router-redux';
 import React, { Component, PropTypes } from 'react';
@@ -28,7 +29,6 @@ class Home extends Component {
 		fetchNearbyObjects();
 	}
 
-	onShowAllClick = () => this.props.dispatch(push('/nearby'));
 	onNearbyItemClick = (id) => this.props.dispatch(push(`/object/${id}`))
 
 	/**
@@ -54,10 +54,9 @@ class Home extends Component {
 						/>
 					</div>
 					<div className={styles.nearby__action}>
-						<FlatButton
-							label="Bekijk allemaal"
-							onClick={this.onShowAllClick}
-						/>
+						<Link to="/nearby">
+							Bekijk allemaal
+						</Link>
 					</div>
 				</div>
 			</div>

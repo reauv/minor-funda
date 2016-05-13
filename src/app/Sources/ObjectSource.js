@@ -34,11 +34,9 @@ export function searchObjects({ address, minPrice, maxPrice }) {
 }
 
 export function fetchObject(id) {
-	return () => {
-		objectActions.fetchingObject();
+	objectActions.fetchingObject();
 
-		return fetch(`${DETAIL_ENDPOINT}/${id}`)
-			.then(response => response.json())
-			.then(response => objectActions.fetchedObject(response));
-	};
+	return fetch(`${DETAIL_ENDPOINT}/${id}`)
+		.then(response => response.json())
+		.then(response => objectActions.fetchedObject(response));
 }

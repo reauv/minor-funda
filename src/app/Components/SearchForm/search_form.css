@@ -1,4 +1,4 @@
-@value primary, light from 'Stylesheets/colors';
+@value primary, dark, light from 'Stylesheets/colors';
 
 .wrapper {
 	composes: .wrapper from 'Stylesheets/shared';
@@ -30,7 +30,7 @@
 
 .address {
 	@media (min-width: 50em) {
-		flex: 0 0 50%;
+		flex: 0 0 25%;
 	}
 }
 
@@ -40,3 +40,23 @@
 		flex: 0 0 20%;
 	}
 }
+
+.input {
+	composes: input from 'Stylesheets/input';
+}
+
+.label {
+	composes: label from 'Stylesheets/input';
+}
+
+.select {
+	composes: select from 'Stylesheets/input';
+}
+
+.submit:focus {
+	outline: -webkit-focus-ring-color auto 5px !important;
+	outline-color: -webkit-focus-ring-color !important;
+	outline-style: auto !important;
+	outline-width: 5px !important;
+}
+

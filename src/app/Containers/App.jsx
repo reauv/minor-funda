@@ -1,12 +1,10 @@
 import 'Stylesheets/reset';
 import 'Stylesheets/shared';
 import theme from 'Misc/theme';
-import { connect } from 'react-redux';
 import React, { Component, PropTypes } from 'react';
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
 
 import Header from 'Components/Header/Header';
-
 
 class App extends Component {
 
@@ -35,7 +33,10 @@ class App extends Component {
 	 */
 	getChildContext() {
 		return {
-			muiTheme: ThemeManager.getMuiTheme(theme),
+			muiTheme: ThemeManager.getMuiTheme(
+				theme,
+				{ userAgent: 'all' },
+			),
 		};
 	}
 
@@ -54,8 +55,4 @@ class App extends Component {
 	}
 }
 
-function select(state) {
-	return { ...state.position };
-}
-
-export default connect(select)(App);
+export default App;

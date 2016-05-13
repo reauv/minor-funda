@@ -1,0 +1,20 @@
+@value dark from 'Stylesheets/colors';
+
+.input {
+	font-size: 100%;
+	padding: 0.5em 1em;
+	background: transparent;
+	border: 0;
+	border-bottom: 1px solid dark;
+	width: 100%;
+}
+
+.select {
+	font-size: 1.5em;
+	margin: 0.5em 0;
+}
+
+.label {
+	display: inline-block;
+	margin-bottom: 1em;
+}

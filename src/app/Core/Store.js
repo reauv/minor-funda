@@ -13,22 +13,23 @@ import * as positionActions from 'Actions/PositionActions';
 const history = (typeof window === 'undefined') ? createMemoryHistory() : browserHistory;
 const reduxRouterMiddleware = syncHistory(history);
 
-// Set up store
-const store = createStore(
-	reducer,
-	{},
-	compose(
-		applyMiddleware(reduxRouterMiddleware, thunk),
-		// window.devToolsExtension ? window.devToolsExtension() : f => f
-	)
-);
+export default function (state = {}) {
+	const store = createStore(
+		reducer,
+		state,
+		compose(
+			applyMiddleware(reduxRouterMiddleware, thunk),
+			// window.devToolsExtension ? window.devToolsExtension() : f => f
+		),
+	);
 
-// Required for replaying actions from devtools to work
-reduxRouterMiddleware.listenForReplays(store);
+	// Required for replaying actions from devtools to work
+	// reduxRouterMiddleware.listenForReplays(store);
 
-// Assign functions to the store
-assignAll(positionActions, store);
-assignAll(objectActions, store);
-assignAll(searchActions, store);
+	// Assign functions to the store
+	assignAll(positionActions, store);
+	assignAll(objectActions, store);
+	assignAll(searchActions, store);
 
-export default store;
+	return store;
+}
