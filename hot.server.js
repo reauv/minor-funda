@@ -4,6 +4,11 @@ var WebpackDevServer = require('webpack-dev-server');
 
 new WebpackDevServer(webpack(config), {
 	hot: true,
+	stats: {
+		colors: true,
+		chunks: false,
+		children: false,
+	},
 	historyApiFallback: true,
 	contentBase: './src/templates/',
 }).listen(8888, '0.0.0.0', function (err) {

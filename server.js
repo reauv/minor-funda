@@ -7,7 +7,6 @@ var config = {
 
 var server = express();
 var bundleValid = false;
-var bundleStart = null;
 var compiler = webpack(config.server);
 
 // Set up the compiler
@@ -17,21 +16,28 @@ compiler.plugin('compile', function () {
 		delete require.cache[require.resolve('./build/bundle.server.js')];
 	}
 
-	bundleStart = Date.now();
-
 	console.log('Bundling...');
 });
 
-compiler.plugin('done', function () {
+compiler.plugin('done', function (stats) {
 	console.log('Bundling completed!');
-	console.log('Done in ' + (Date.now() - bundleStart) + 'ms');
+	console.log(stats.toString({
+		colors: true,
+		chunks: false,
+		children: false,
+	}));
+	console.log('');
+
 	bundleValid = true;
 });
 
-compiler.watch({}, function (error) {
+compiler.watch({}, function (error, stats) {
 	if (error) {
-		return console.error(error);
+		console.log('Something went wrong while building the server bundle.');
+		console.log(error);
 	}
+
+
 });
 
 // Set up the regular server
