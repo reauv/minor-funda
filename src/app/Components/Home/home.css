@@ -1,0 +1,20 @@
+.wrapper {
+	composes: wrapper from 'Stylesheets/shared';
+}
+
+.nearby {
+	margin-top: 2em;
+
+	&__title {
+		composes: h2 from 'Stylesheets/typography';
+	}
+
+	&__list {
+		margin-top: 1em;
+	}
+
+	&__action {
+		margin-top: 1em;
+		text-align: right;
+	}
+}

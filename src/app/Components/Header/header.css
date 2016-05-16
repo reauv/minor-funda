@@ -1,0 +1,10 @@
+@value primary from "Stylesheets/colors";
+
+.container {
+	background: primary;
+	padding: 1em;
+}
+
+.logo {
+	width: 100px;
+}

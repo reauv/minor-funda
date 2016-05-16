@@ -1,0 +1,42 @@
+@value primary, light from 'Stylesheets/colors';
+
+.wrapper {
+	composes: .wrapper from 'Stylesheets/shared';
+	margin-top: 2em;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	border: 5px solid primary;
+	padding: 2em;
+
+	@media (min-width: 50em) {
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+}
+
+.actions {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 1em;
+
+	@media (min-width: 50em) {
+		flex: 100%;
+	}
+}
+
+.address {
+	@media (min-width: 50em) {
+		flex: 0 0 50%;
+	}
+}
+
+.min_price,
+.max_price {
+	@media (min-width: 50em) {
+		flex: 0 0 20%;
+	}
+}

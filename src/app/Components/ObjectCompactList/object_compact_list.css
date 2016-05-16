@@ -1,0 +1,16 @@
+.wrapper {
+	composes: .wrapper from 'Stylesheets/shared';
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+
+	@media (min-width: 50em) {
+		flex-direction: row;
+	}
+
+	& > * {
+		margin-top: 2em;
+		@media (min-width: 50em) { margin-top: 0 }
+		&:first-child { margin-top: 0 }
+	}
+}
