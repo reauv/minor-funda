@@ -40,8 +40,9 @@ class ObjectItem extends Component {
 					<figure className={styles.figure}>
 						<div className={styles.figure__overlay} />
 						<img
-							src={this.props.object.HoofdFoto}
+							src={this.props.object.FotoLarge}
 							alt={`Foto van ${this.props.object.Adres}`}
+						/>
 					</figure>
 					<div className={styles.info}>
 						<header className={styles.header}>
