@@ -9,6 +9,18 @@ import * as objectActions from 'Actions/ObjectActions';
 import * as searchActions from 'Actions/SearchActions';
 import * as positionActions from 'Actions/PositionActions';
 
+/**
+ * Check if the environement is a browser and has the dev tools extension.
+ *
+ * @return {Boolean}
+ */
+function hasDevToolsExtension() {
+	return (
+		typeof window === 'object'
+		&& typeof window.devToolsExtension !== 'undefined'
+	);
+}
+
 // Set up router middleware
 const history = (typeof window === 'undefined') ? createMemoryHistory() : browserHistory;
 const reduxRouterMiddleware = syncHistory(history);
@@ -19,12 +31,9 @@ export default function (state = {}) {
 		state,
 		compose(
 			applyMiddleware(reduxRouterMiddleware, thunk),
-			// window.devToolsExtension ? window.devToolsExtension() : f => f
+			hasDevToolsExtension() ? window.devToolsExtension() : f => f,
 		),
 	);
-
-	// Required for replaying actions from devtools to work
-	// reduxRouterMiddleware.listenForReplays(store);
 
 	// Assign functions to the store
 	assignAll(positionActions, store);

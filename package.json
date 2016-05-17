@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A boilerplate for webpack, redux & react",
   "scripts": {
-    "dev": "rm -rf ./build && supervisor server.js & supervisor hot.server.js",
+    "dev": "rm -rf ./build && node server.js & node hot.server.js",
     "production": "rm -rf ./build && webpack -p --config webpack.production.config.js",
     "compile-server": "webpack --config webpack.server.config.js",
     "lint": "eslint src"
@@ -53,6 +53,7 @@
   "dependencies": {
     "es6-promise": "^3.0.2",
     "isomorphic-fetch": "^2.2.1",
+    "json-loader": "^0.5.4",
     "lodash": "^4.4.0",
     "material-ui": "^0.14.4",
     "node-fetch": "^1.4.1",

@@ -13,16 +13,16 @@ class SearchListContainer extends Component {
 	 */
 	static propTypes = {
 		results: PropTypes.array,
-		location: PropTypes.object,
+		location: PropTypes.object.isRequired,
 	}
 
 	/**
-	 * Invoked once, both on the client and server, immediately
-	 * before the initial rendering occurs.
+	 * Invoked once, only on the client (not on the server), immediately
+	 * after the initial rendering occurs.
 	 *
 	 * @return {void}
 	 */
-	componentWillMount() {
+	componentDidMount() {
 		searchObjects(this.props.location.query);
 	}
 
@@ -40,6 +40,17 @@ class SearchListContainer extends Component {
 	}
 
 	/**
+	 * The data that should be fetched for this container.
+	 *
+	 * @param  {Object} params
+	 * @param  {Object} location
+	 * @return {Promise}
+	 */
+	static fetchData(params, location) {
+		return searchObjects(location.query);
+	}
+
+	/**
 	 * Render the component.
 	 *
 	 * @return {ReactElement}
@@ -47,7 +58,7 @@ class SearchListContainer extends Component {
 	render() {
 		return (
 			<div className="wrapper">
-				<SearchFormContainer />
+				<SearchFormContainer {...this.props} />
 				<ObjectList results={this.props.results} />
 			</div>
 		);

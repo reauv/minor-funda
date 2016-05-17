@@ -2,7 +2,7 @@ import { Link } from 'react-router';
 import styles from './object_compact_item';
 import React, { Component, PropTypes } from 'react';
 
-import { Card, CardMedia, CardTitle, CardActions, FlatButton } from 'material-ui';
+import { Card, CardMedia, CardTitle, CardActions } from 'material-ui';
 
 class ObjectCompactItem extends Component {
 
@@ -33,7 +33,7 @@ class ObjectCompactItem extends Component {
 					<h1 className={styles.title}>{this.props.object.Adres}</h1>
 				</CardTitle>
 				<CardActions className={styles.actions}>
-					<Link to="{{`/object/${this.props.object.Id}`}}">
+					<Link to={`/object/${this.props.object.Id}`}>
 						Bekijk
 					</Link>
 				</CardActions>

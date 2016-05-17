@@ -1,6 +1,6 @@
+import { Link } from 'react-router';
 import styles from './object_item.css';
 import React, { Component, PropTypes } from 'react';
-import { RaisedButton } from 'material-ui';
 
 class ObjectItem extends Component {
 
@@ -11,11 +11,13 @@ class ObjectItem extends Component {
 	 */
 	static propTypes = {
 		object: PropTypes.object.isRequired,
-		onItemClick: PropTypes.func.isRequired,
 	}
 
-	onShowClick = () => this.props.onItemClick(this.props.object.Id);
-
+	/**
+	 * Get the status of an object.
+	 *
+	 * @return {String}
+	 */
 	getStatus() {
 		if (this.props.object.IsVerkochtOfVerhuurd) {
 			return (this.props.object.isVerkocht)
@@ -55,7 +57,7 @@ class ObjectItem extends Component {
 							EUR {this.props.object.Koopprijs}
 						</p>
 						<div className={styles.action}>
-							<RaisedButton label="Bekijk" primary onClick={this.onShowClick} />
+							<Link to={`object/${this.props.object.Id}`}>Bekijk</Link>
 						</div>
 					</div>
 				</div>

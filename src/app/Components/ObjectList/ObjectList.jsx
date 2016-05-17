@@ -12,16 +12,19 @@ class ObjectList extends Component {
 	 */
 	static propTypes = {
 		title: PropTypes.string,
-		onItemClick: PropTypes.func,
 		results: PropTypes.array.isRequired,
 	}
 
+	/**
+	 * Render the results.
+	 *
+	 * @return {Array}
+	 */
 	renderResults() {
 		return this.props.results.map((object, i) =>
 			<ObjectItem
 				key={i}
 				object={object}
-				onItemClick={this.props.onItemClick}
 			/>
 		);
 	}

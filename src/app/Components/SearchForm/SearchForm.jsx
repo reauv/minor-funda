@@ -32,7 +32,6 @@ class SearchForm extends Component {
 		);
 	}
 
-
 	/**
 	 * Render the component.
 	 *
@@ -43,7 +42,7 @@ class SearchForm extends Component {
 
 		return (
 			<div className={styles.wrapper}>
-				<form onSubmit={handleSubmit(this.onSubmit)} className={styles.container}>
+				<form action="/search" onSubmit={handleSubmit(this.onSubmit)} className={styles.container}>
 					<div className={styles.address}>
 						<label className={styles.label}>
 							Waar zoek je een woning?

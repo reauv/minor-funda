@@ -11,7 +11,7 @@ import { RouterContext, match } from 'react-router';
 function fetchAll(routerState) {
 	return routerState.components.map(component => {
 		if (component && component.fetchData) {
-			return component.fetchData(routerState.params);
+			return component.fetchData(routerState.params, routerState.location);
 		}
 	});
 }

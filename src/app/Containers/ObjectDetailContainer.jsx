@@ -23,9 +23,7 @@ class ObjectDetailContainer extends Component {
 	 * @return {void}
 	 */
 	componentDidMount() {
-		if (!this.props.object.Id) {
-			fetchObject(this.props.params.id);
-		}
+		fetchObject(this.props.params.id);
 	}
 
 	/**
