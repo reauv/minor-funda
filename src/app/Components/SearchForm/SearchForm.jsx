@@ -1,8 +1,7 @@
 import styles from './search_form';
 import { push } from 'react-router-redux';
 import React, { Component, PropTypes } from 'react';
-import { fetchSuggestions } from 'Sources/SearchSource';
-import { AutoComplete, SelectField, MenuItem, RaisedButton } from 'material-ui';
+import { RaisedButton } from 'material-ui';
 
 const PRICES = [
 	50000, 100000, 200000, 300000, 400000, 500000,
@@ -21,8 +20,6 @@ class SearchForm extends Component {
 		addressSuggestions: PropTypes.array,
 	}
 
-	onAddressChange = (value) => this.props.fields.address.onChange(value);
-	onAddressInputChange = (value) => fetchSuggestions(value);
 	onMinPriceChange = (event, key, value) => this.props.fields.minPrice.onChange(value);
 	onMaxPriceChange = (event, key, value) => this.props.fields.maxPrice.onChange(value);
 	onSubmit = (values, dispatch) => {
@@ -35,58 +32,62 @@ class SearchForm extends Component {
 		);
 	}
 
-
 	/**
 	 * Render the component.
 	 *
 	 * @return {ReactElement}
 	 */
 	render() {
-		const { fields: { minPrice, maxPrice }, handleSubmit } = this.props;
+		const { fields: { address, minPrice, maxPrice }, handleSubmit } = this.props;
 
 		return (
 			<div className={styles.wrapper}>
-				<form onSubmit={handleSubmit(this.onSubmit)} className={styles.container}>
+				<form action="/search" onSubmit={handleSubmit(this.onSubmit)} className={styles.container}>
 					<div className={styles.address}>
-						<AutoComplete
-							fullWidth
+						<label className={styles.label}>
+							Waar zoek je een woning?
+						</label>
+						<input
+							type="text"
 							className={styles.input}
-							filter={AutoComplete.noFilter}
-							onNewRequest={this.onAddressChange}
-							onUpdateInput={this.onAddressInputChange}
-							dataSource={this.getDataSource()}
-							floatingLabelText="Waar zoek je een woning?"
+							{...address}
 						/>
 					</div>
 
 					<div className={styles.min_price}>
-						<SelectField
-							fullWidth
-							value={minPrice.value}
-							onChange={this.onMinPriceChange}
-							floatingLabelText="Minimum prijs"
+						<label className={styles.label}>
+							Minimum prijs
+						</label>
+						<select
+							className={styles.select}
+							{...minPrice}
+							value={minPrice.value || ''}
 						>
+							<option></option>
 							{PRICES.map((price, i) =>
-								<MenuItem key={i} value={price} primaryText={`EUR ${price}`} />
+								<option key={i} value={price}>{`EUR ${price}`}</option>
 							)}
-						</SelectField>
+						</select>
 					</div>
 
 					<div className={styles.max_price}>
-						<SelectField
-							fullWidth
-							value={maxPrice.value}
-							onChange={this.onMaxPriceChange}
-							floatingLabelText="Maximum prijs"
+						<label className={styles.label}>
+							Maximum prijs
+						</label>
+						<select
+							className={styles.select}
+							{...maxPrice}
+							value={maxPrice.value || ''}
 						>
+							<option></option>
 							{PRICES.map((price, i) =>
-								<MenuItem key={i} value={price} primaryText={`EUR ${price}`} />
+								<option key={i} value={price}>{`EUR ${price}`}</option>
 							)}
-						</SelectField>
+						</select>
 					</div>
 
 					<div className={styles.actions}>
-						<RaisedButton primary type="submit" label="Zoek" />
+						<RaisedButton primary type="submit" label="Zoek" className={styles.submit} />
 					</div>
 				</form>
 			</div>

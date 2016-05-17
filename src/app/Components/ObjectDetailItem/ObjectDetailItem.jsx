@@ -1,4 +1,5 @@
 import styles from './object_detail_item';
+import { CircularProgress } from 'material-ui';
 import React, { Component, PropTypes } from 'react';
 
 class ObjectDetailItem extends Component {
@@ -28,6 +29,12 @@ class ObjectDetailItem extends Component {
 	 * @return {ReactElement}
 	 */
 	render() {
+		if (!this.props.object.Id) {
+			return (
+				<CircularProgress className={styles.loader} />
+			);
+		}
+
 		return (
 			<div className={styles.container}>
 				<div className={styles.wrapper}>

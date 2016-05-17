@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 import React, { Component, PropTypes } from 'react';
 import { fetchNearbyObjects } from 'Sources/ObjectSource';
 import ObjectList from 'Components/ObjectList/ObjectList';
@@ -12,8 +11,7 @@ class NearbyListContainer extends Component {
 	 * @type {Object}
 	 */
 	static propTypes = {
-		results: PropTypes.array,
-		onItemClick: PropTypes.func,
+		results: PropTypes.array.isRequired,
 	}
 
 	/**
@@ -34,7 +32,6 @@ class NearbyListContainer extends Component {
 	render() {
 		return (
 			<ObjectList
-				onItemClick={this.props.onItemClick}
 				title="Woningen bij jou in de buurt"
 				results={this.props.results}
 			/>
@@ -50,10 +47,4 @@ function select(state) {
 	};
 }
 
-function mapDispatch(dispatch) {
-	return {
-		onItemClick: (id) => dispatch(push(`/object/${id}`)),
-	};
-}
-
-export default connect(select, mapDispatch)(NearbyListContainer);
+export default connect(select)(NearbyListContainer);

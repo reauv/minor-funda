@@ -1,7 +1,6 @@
-const PATH = __dirname;
+var PATH = __dirname;
 var path = require('path');
 var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 
@@ -11,15 +10,15 @@ module.exports = {
 	devtool: 'eval',
 
 	entry: [
-		'webpack-dev-server/client?http://0.0.0.0:8080',
+		'webpack-dev-server/client?http://0.0.0.0:8888',
 		'webpack/hot/only-dev-server',
-		'./src/index'
+		'./src/client',
 	],
 
 	output: {
 		path: `${PATH}/hot`,
-		publicPath: '/',
-		filename: 'bundle.js'
+		publicPath: 'http://0.0.0.0:8888/',
+		filename: 'bundle.client.js',
 	},
 
 	// Instructions to how resolve the modules
@@ -29,15 +28,11 @@ module.exports = {
 		fallback: path.join(__dirname, 'node_modules'),
 		alias: {
 			env: path.join(PATH, 'env'),
-		}
+		},
 	},
 
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
-		new HtmlWebpackPlugin({
-			template: `${PATH}/src/templates/index.html`,
-			inject: true
-		}),
 	],
 
 	postcss: [
@@ -55,8 +50,12 @@ module.exports = {
 			},
 			{
 				test: /\.css$/,
-				loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'
+				loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader',
+			},
+			{
+				test: /\.json$/,
+				loader: 'json-loader',
 			},
 		],
-	}
+	},
 };

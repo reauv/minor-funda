@@ -1,6 +1,7 @@
 import styles from './home.css';
-import { FlatButton } from 'material-ui';
+import { Link } from 'react-router';
 import { push } from 'react-router-redux';
+import { isNode } from 'Utilities/environment';
 import React, { Component, PropTypes } from 'react';
 import { fetchNearbyObjects } from 'Sources/ObjectSource';
 import SearchFormContainer from 'Containers/SearchFormContainer';
@@ -28,8 +29,45 @@ class Home extends Component {
 		fetchNearbyObjects();
 	}
 
-	onShowAllClick = () => this.props.dispatch(push('/nearby'));
 	onNearbyItemClick = (id) => this.props.dispatch(push(`/object/${id}`))
+
+	/**
+	 * Render the list with nearby items.
+	 *
+	 * @return {ReactElement}
+	 */
+	renderNearby() {
+		if (isNode() || !window.navigator) {
+			return (
+				<div className={styles.nearby}>
+					<p className={styles.nearby__error}>
+						Helaas kunnen wij jouw locatie niet ophalen.
+						Gebruik het zoekveld om een woning te zoeken bij jou
+						in de buurt.
+					</p>
+				</div>
+			);
+		}
+
+		return (
+			<div className={styles.nearby}>
+				<h2 className={styles.nearby__title}>
+					Woningen bij jou in de buurt
+				</h2>
+				<div className={styles.nearby__list}>
+					<ObjectCompactList
+						results={this.props.nearbyResults}
+						onItemClick={this.onNearbyItemClick}
+					/>
+				</div>
+				<div className={styles.nearby__action}>
+					<Link to="/nearby">
+						Bekijk allemaal
+					</Link>
+				</div>
+			</div>
+		);
+	}
 
 	/**
 	 * Render the component.
@@ -40,26 +78,11 @@ class Home extends Component {
 		return (
 			<div className={styles.wrapper}>
 				<div className={styles.search}>
-					<SearchFormContainer />
+					<SearchFormContainer {...this.props} />
 				</div>
 
-				<div className={styles.nearby}>
-					<h2 className={styles.nearby__title}>
-						Woningen bij jou in de buurt
-					</h2>
-					<div className={styles.nearby__list}>
-						<ObjectCompactList
-							results={this.props.nearbyResults}
-							onItemClick={this.onNearbyItemClick}
-						/>
-					</div>
-					<div className={styles.nearby__action}>
-						<FlatButton
-							label="Bekijk allemaal"
-							onClick={this.onShowAllClick}
-						/>
-					</div>
-				</div>
+				{this.renderNearby()}
+
 			</div>
 		);
 	}

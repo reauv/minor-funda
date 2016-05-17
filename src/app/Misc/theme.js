@@ -4,8 +4,8 @@ import Spacing from 'material-ui/lib/styles/spacing';
 import zIndex from 'material-ui/lib/styles/zIndex';
 
 export default {
+	zIndex,
 	spacing: Spacing,
-	zIndex: zIndex,
 	fontFamily: 'Open Sans, sans-serif',
 	palette: {
 		primary1Color: '#F8B000',
@@ -20,5 +20,5 @@ export default {
 		borderColor: Colors.grey300,
 		disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3),
 		pickerHeaderColor: Colors.cyan500,
-	}
+	},
 };

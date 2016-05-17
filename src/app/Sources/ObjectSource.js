@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { FUNDA_API_KEY } from 'env';
 import { fetchPositionData } from 'Sources/PositionSource';
 import * as objectActions from 'Actions/ObjectActions';
@@ -11,11 +10,10 @@ function fetchObjects(type = 'koop', location = '', radius = 0, filters = []) {
 	const radiusKm = `+${radius}km`;
 
 	return fetch(`
-		${SEARCH_ENDPOINT}
-		/?type=${type}&zo=/${location}/${radiusKm}/${filterList}&page=1&pagesize=25`
+		${SEARCH_ENDPOINT}/?type=${type}&zo=/${location}/${radiusKm}/${filterList}&page=1&pagesize=25`
 	)
 		.then(response => response.json())
-		.catch(error => _.defer(() => { throw error; }));
+		.catch(error => console.error(error.stack));
 }
 
 export function fetchNearbyObjects() {

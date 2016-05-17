@@ -13,16 +13,27 @@ class ObjectDetailContainer extends Component {
 	static propTypes = {
 		object: PropTypes.object.isRequired,
 		params: PropTypes.object.isRequired,
+		dispatch: PropTypes.func.isRequired,
 	}
 
 	/**
-	 * Invoked once, both on the client and server, immediately
-	 * before the initial rendering occurs.
+	 * Invoked once, only on the client (not on the server), immediately
+	 * after the initial rendering occurs.
 	 *
 	 * @return {void}
 	 */
-	componentWillMount() {
+	componentDidMount() {
 		fetchObject(this.props.params.id);
+	}
+
+	/**
+	 * The data that should be fetched for this container.
+	 *
+	 * @param  {Object} params
+	 * @return {Promise}
+	 */
+	static fetchData(params) {
+		return fetchObject(params.id);
 	}
 
 	/**
