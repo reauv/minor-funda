@@ -44,10 +44,11 @@ class SearchForm extends Component {
 			<div className={styles.wrapper}>
 				<form action="/search" onSubmit={handleSubmit(this.onSubmit)} className={styles.container}>
 					<div className={styles.address}>
-						<label className={styles.label}>
+						<label htmlFor="address" className={styles.label}>
 							Waar zoek je een woning?
 						</label>
 						<input
+							id="address"
 							type="text"
 							className={styles.input}
 							{...address}
@@ -55,10 +56,11 @@ class SearchForm extends Component {
 					</div>
 
 					<div className={styles.min_price}>
-						<label className={styles.label}>
+						<label htmlFor="minPrice" className={styles.label}>
 							Minimum prijs
 						</label>
 						<select
+							id="minPrice"
 							className={styles.select}
 							{...minPrice}
 							value={minPrice.value || ''}
@@ -71,10 +73,11 @@ class SearchForm extends Component {
 					</div>
 
 					<div className={styles.max_price}>
-						<label className={styles.label}>
+						<label htmlFor="maxPrice" className={styles.label}>
 							Maximum prijs
 						</label>
 						<select
+							id="maxPrice"
 							className={styles.select}
 							{...maxPrice}
 							value={maxPrice.value || ''}
