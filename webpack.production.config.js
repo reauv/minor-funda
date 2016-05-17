@@ -7,8 +7,6 @@ module.exports = {
 	// Context of the app
 	context: PATH,
 
-	devtool: 'eval',
-
 	entry: './src/client',
 
 	output: {
