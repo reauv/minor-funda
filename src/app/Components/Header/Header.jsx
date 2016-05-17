@@ -13,7 +13,7 @@ class Header extends Component {
 		return (
 			<div className={styles.container}>
 				<Link to="/">
-					<img src="/logo.svg" className={styles.logo} alt="Funda" />
+					<img src="/logo.svg" className={styles.logo} alt="Funda" width="100px" />
 				</Link>
 			</div>
 		);
